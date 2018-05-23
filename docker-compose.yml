@@ -1,0 +1,31 @@
+version: '3.2'
+volumes:
+  mavendependencies:
+  datavolume:
+  bundle:
+  bundle:
+services:
+  mongodb:
+    image: mongo:3.2
+    container_name: test_mongo
+    volumes:
+        - datavolume:/data/db
+    ports:
+        - "27017:27017"
+  bundles:
+    image: busybox
+    volumes:
+      - '.:/app'
+      - 'bundle:/bundle'
+  app:
+    build: .
+    command: bash -c 'rm -rf tmp/pids && bundle install && bundle exec rake db:migrate && bundle exec rails s -b0'
+    container_name: test_api
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    stdin_open: true
+    tty: true
