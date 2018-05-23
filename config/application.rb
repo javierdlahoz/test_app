@@ -32,5 +32,10 @@ module App
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     Mongoid::Serializer.configure!
+
+    config.generators do |g|
+      g.factory_bot false
+    end
+
   end
 end

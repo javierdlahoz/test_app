@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Url, type: :model do
   it { is_expected.to be_mongoid_document }
 
-  subject { Url.new(full_url: 'http://test.com') }
+  subject { build(:url) }
 
   it 'should generate short url when created' do
     subject.save
