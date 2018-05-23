@@ -1,4 +1,4 @@
-class ShortUrl
+class Url
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -10,11 +10,24 @@ class ShortUrl
 
   before_create :generate_short_url
 
+  def full_short_url
+    "#{Rails.application.config.ui_domain}/#{short_url}"
+  end
+
+  def as_json(options = {})
+    serializable_hash(
+      {
+        methods: [:full_short_url],
+        except: [:counter]
+      }.merge(options)
+    )
+  end
+
   private
 
   def generate_short_url
     tmp_short_url = UrlShortener.generate_short_url
-    while ShortUrl.where(short_url: tmp_short_url).count > 0 do
+    while Url.where(short_url: tmp_short_url).count > 0 do
       tmp_short_url = UrlShortener.generate_short_url
     end
     self.short_url = tmp_short_url

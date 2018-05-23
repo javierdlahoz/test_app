@@ -15,7 +15,7 @@ services:
   bundles:
     image: busybox
     volumes:
-      - '.:/app'
+      - '.:/usr/local/bundle'
       - 'bundle:/bundle'
   app:
     build: .
