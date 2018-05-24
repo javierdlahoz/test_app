@@ -15,10 +15,18 @@ class UrlsController < ApplicationController
     end
   end
 
+  def show
+    render json: url
+  end
+
   private
 
   def attributes
     params.require(:url).permit(:full_url)
+  end
+
+  def url
+    Url.find_by(short_url: params[:id])
   end
 
 end

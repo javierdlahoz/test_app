@@ -7,6 +7,7 @@ class Url
   field :counter, type: Integer, default: 0
 
   validates :short_url, uniqueness: true, allow_nil: true
+  validates :full_url, format: URI::regexp(%w(http https))
 
   before_create :generate_short_url
 
