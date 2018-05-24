@@ -2,6 +2,8 @@ class Url
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  attr_accessor :domain
+
   field :full_url, type: String
   field :short_url, type: String
   field :counter, type: Integer, default: 0
@@ -12,7 +14,11 @@ class Url
   before_create :generate_short_url
 
   def full_short_url
-    "#{Rails.application.config.ui_domain}/#{short_url}"
+    if domain
+      "#{domain}/#{short_url}"
+    else
+      "#{Rails.application.config.ui_domain}/#{short_url}"
+    end
   end
 
   def as_json(options = {})

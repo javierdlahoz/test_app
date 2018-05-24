@@ -16,13 +16,14 @@ class UrlsController < ApplicationController
   end
 
   def show
+    url.inc(counter: 1)
     render json: url
   end
 
   private
 
   def attributes
-    params.require(:url).permit(:full_url)
+    params.require(:url).permit(:full_url, :domain)
   end
 
   def url
