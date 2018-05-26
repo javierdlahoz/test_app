@@ -1,0 +1,18 @@
+<form #urlForm="ngForm" name="urlForm" (submit)="createUrl()">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control form-control-lg mr-2" name="fullUrl" [(ngModel)]="urlObject.full_url" placeholder="http://example.com">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary btn-lg">Make it short!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <app-loader *ngIf="loading"></app-loader>
+    <div class="col-md-12" *ngIf="newUrl">
+      Your short Url here: <a href="{{newUrl}}">{{newUrl}}</a>
+    </div>
+  </div>
+</form>

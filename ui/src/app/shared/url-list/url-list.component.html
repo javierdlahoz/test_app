@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Short</th>
+      <th scope="col">Full</th>
+      <th scope="col">Visits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let urlObject of urlList; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td><a href="{{urlObject.full_short_url}}">{{urlObject.full_short_url}}</a></td>
+      <td><a href="{{urlObject.full_url}}">{{urlObject.full_url}}</a></td>
+      <th scope="row">{{urlObject.counter}}</th>
+    </tr>
+  </tbody>
+</table>

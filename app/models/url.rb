@@ -2,11 +2,10 @@ class Url
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  attr_accessor :domain
-
   field :full_url, type: String
   field :short_url, type: String
   field :counter, type: Integer, default: 0
+  field :domain, type: String
 
   validates :short_url, uniqueness: true, allow_nil: true
   validates :full_url, format: URI::regexp(%w(http https))
@@ -25,7 +24,7 @@ class Url
     serializable_hash(
       {
         methods: [:full_short_url],
-        except: [:counter]
+        exclude: [:domain]
       }.merge(options)
     )
   end
