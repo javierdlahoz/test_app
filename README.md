@@ -27,6 +27,9 @@ then save.
 
 This project is using several technologies:
 
+* Docker
 * Ruby on Rails 5.2
 * Angular 5
 * MongoDB 3.2
+
+The UI folder can be found in the path `ui/`
