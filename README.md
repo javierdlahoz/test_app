@@ -3,22 +3,30 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+### Requirements:
 
-* Ruby version
+* Docker
 
-* System dependencies
+### Installation:
 
-* Configuration
+* `docker-compose build`
 
-* Database creation
+### Running Locally
 
-* Database initialization
+This process may take several minutes the first time
+* `docker-compose up`
 
-* How to run the test suite
+* Modify the hosts file, in order to create your test domain, for this, please add a line like this one
+`127.0.0.1  ui.ts`
+then save.
 
-* Services (job queues, cache servers, search engines, etc.)
+* When this is done, you can open a web browser and type
+[ui.ts](http://ui.ts)
 
-* Deployment instructions
+### Information
 
-* ...
+This project is using several technologies:
+
+* Ruby on Rails 5.2
+* Angular 5
+* MongoDB 3.2
