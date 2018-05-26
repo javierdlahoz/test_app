@@ -8,10 +8,11 @@ class UrlsController < ApplicationController
   end
 
   def create
-    if @url.save
-      render json: @url
+    url = Url.fetch_or_create(attributes)
+    if url.save
+      render json: url
     else
-      render_errors @url
+      render_errors url
     end
   end
 
@@ -28,14 +29,6 @@ class UrlsController < ApplicationController
 
   def url
     Url.find_by(short_url: params[:id])
-  end
-
-  def fetch_or_create_url
-    begin
-      @url = Url.find_by(attributes)
-    rescue
-      @url = Url.new(attributes)
-    end
   end
 
 end

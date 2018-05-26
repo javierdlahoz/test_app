@@ -10,6 +10,10 @@ services:
         - datavolume:/data/db
     ports:
         - 27017:27017
+  bundle_cache:
+    image: busybox
+    volumes:
+      - bundle_cache:/bundle_cache
   app:
     build: .
     command: bash -c 'rm -rf tmp/pids && bundle install && bundle exec rake db:migrate && bundle exec rails s -b0'
@@ -25,10 +29,9 @@ services:
     environment:
       - BUNDLE_PATH=/bundle_cache
     tty: true
-  bundle_cache:
-    image: busybox
-    volumes:
-      - bundle_cache:/bundle_cache
+    depends_on:
+      - bundle_cache
+      - mongodb
   ui:
     build: .
     command: bash -c 'cd ui && npm install && npm start'

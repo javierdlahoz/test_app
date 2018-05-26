@@ -12,6 +12,18 @@ class Url
 
   before_create :generate_short_url
 
+  class << self
+
+    def fetch_or_create attributes
+      begin
+        self.find_by(attributes)
+      rescue
+        self.new(attributes)
+      end
+    end
+
+  end
+
   def full_short_url
     if domain
       "#{domain}/#{short_url}"
