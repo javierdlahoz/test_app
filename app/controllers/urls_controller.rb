@@ -6,7 +6,8 @@ class UrlsController < ApplicationController
   end
 
   def create
-    url = Url.new(attributes)
+    url = Url.find_by(attributes)
+    url ||= Url.new(attributes)
 
     if url.save
       render json: url

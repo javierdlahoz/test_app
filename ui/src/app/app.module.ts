@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
+import { ShortRedirectModule } from "@app/short-redirect/short-redirect.module";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,7 +18,9 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     SharedModule,
     HomeModule,
-    AppRoutingModule
+    ShortRedirectModule,
+    AppRoutingModule,
+    SharedModule
   ],
   declarations: [AppComponent],
   providers: [

@@ -18,7 +18,11 @@ export class UrlListComponent implements OnInit {
   }
 
   private fetchUrlList() {
-    this.urlService.fetchTop100().subscribe(list => this.urlList = list.urls);
+    this.loading = true;
+    this.urlService.fetchTop100().subscribe((list) => {
+      this.loading = false;
+      this.urlList = list.urls
+    });
   }
 
 }
